@@ -4,13 +4,19 @@ This is the final report with code for KAIST course KSE 801.
 
 Author: Chuanbo Hua, Federico Berto. 
 
-## 💡 Introduction
+## 💡 Introduction About the OSC
 
 **Orthogonal collocation** is a method for the [numerical solution of partial differential equations](https://en.wikipedia.org/wiki/Numerical_partial_differential_equations). It uses [collocation](https://en.wikipedia.org/wiki/Collocation_method) at the zeros of some [orthogonal polynomials](https://en.wikipedia.org/wiki/Orthogonal_polynomials) to transform the [partial differential equation](https://en.wikipedia.org/wiki/Partial_differential_equation) (PDE) to a set of [ordinary differential equations](https://en.wikipedia.org/wiki/Ordinary_differential_equation) (ODEs). The ODEs can then be solved by any method. It has been shown that it is usually advantageous to choose the collocation points as the zeros of the corresponding [Jacobi polynomial](https://en.wikipedia.org/wiki/Jacobi_polynomial) (independent of the PDE system) [1]. 
 
 Orthogonal collocation method was famous at 1970s, mainly developed by BA Finlayson [2]. Which is a powerful collocation tool in solving partial differential equations and ordinary differential equations.
 
 Orthogonal collocation method works for more than one variable, but here we only choose one variable cases, since this is more simple to understand and most widely used. 
+
+## 💡 Introduction About the GNN
+
+You can find more details from the jupter notebook within `gnn-notebook` folder. We include the dataset init, model training and test in the folder. 
+
+**Reminder**: for dataset, we provide another repository for dataset generator. Please refer to repo: https://github.com/DiffEqML/pde-dataset-generator. 
 
 ## 🏷 Features
 
@@ -21,25 +27,29 @@ Orthogonal collocation method works for more than one variable, but here we only
 
 ```python
 Python Version: 3.6 or later
-Python Package: numpy, matplotlib, jupyter-notebook/jupyter-lab
+Python Package: numpy, matplotlib, jupyter-notebook/jupyter-lab, dgl, torch
 ```
 
 ## 🔧 Structure
 
 - `src`: source code for OSC algorithm. 
 - `fig`: algorithm output figures for readme
-- `notebook`: tutorial jupyter notebooks
+- `osc-notebook`: tutorial jupyter notebooks about our osc method
+- `gnn-notebook`: tutorial jupyter notebooks about graph neural network 
+- `script`: some training and tesing script of the graph neural network
 
 ## 🔦 How to use
 
 **Step 1**. [Download](https://github.com/cbhua/model-orthogonal-collocation/archive/refs/heads/main.zip) or [Clone](git@github.com:cbhua/model-orthogonal-collocation.git) this repository.
 
-**Step 2**. Refer to `notebook/example.ipynb`, it will introduce how to use this model in detail by examples. Main process would be 
+**Step 2**. Refer to `osc-notebook/example.ipynb`, it will introduce how to use this model in detail by examples. Main process would be 
 
 1. `collocation1d()`: generate collocation points.
 2. `generator1d()`: generate algebra equations from PDEs to be solved.
 3. `numpy.linalg.solve()`: solve the algebra equations to get polynomial result, 
 4. `polynomial1d()`: generate simulation value to check the loss. 
+
+**Step 3**. Refer to notebooks under `gnn-notebook` to get the idea of training graph model. 
 
 ## 📈 Examples
 
@@ -54,6 +64,14 @@ Python Package: numpy, matplotlib, jupyter-notebook/jupyter-lab
 **One variable, nonlinear** `Loss: 0.0447`
 
 <img src="fig/case3-result.jpg" width="80%">
+
+**2D PDEs Simulation**
+
+<img src="fig/pde2.jpg" width="80%">
+
+**Dam Breaking Simulation**
+
+<img src="fig/dam-breaking.jpg" width="80%">
 
 ## 📜 Algorithm
 
